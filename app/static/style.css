@@ -1,0 +1,23 @@
+#gender,#job_city{
+    list-style-type: none;
+    display: inline-flex;
+}
+
+#gender > li{
+    padding-right: 10px;
+}
+
+#job_city > li{
+    padding-right: 10px;
+}
+
+body{
+    background-color: rgb(9 35 33);
+    color: #c58686;
+    font-family: 'Goblin One', cursive;
+}
+
+.nm{
+    text-decoration: none;
+    color:#888f90
+}

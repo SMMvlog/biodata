@@ -1,0 +1,41 @@
+{% extends 'basic.html' %}
+{% block body %}
+<div class="container mt-5">
+<h1 class="alert-danger text-center p-3"> Resume Uploader </h1>
+<div class="row">
+<div class="col-sm-7">
+<form action="" method="post" enctype="multipart/form-data" class="shadow p-3">
+{% csrf_token %}
+{% for f in fm %}
+<div class="form-group mb-3">
+{{f.label_tag}} {{f}} <small class="danger"> {{f.errors|striptags}} </small>
+</div>
+{% endfor %}
+
+<input type="submit" value="Submit" class="btn btn-primary" id="btnsave">
+{% if fm.non_field_errors %}
+{% for error in fm.non_field_errors %}
+<p class="alert alert-danger my-3">{{error}}</p>
+{% endfor %}
+{% endif %}
+</form>
+</div>
+<div class="col-sm-5">
+<h4 class="text-center mb-3"> <u> List of Candidates </u> </h4>
+{% for candidate in candidates %}
+{{candidate.id}} <a href="{% url 'candidate' candidate.id %}" class="nm"> {{candidate.name}}</a>
+<div class="float-end">
+<a href="{% url 'update' candidate.id %}" class="btn btn-info"> Edit </a>
+<a href="{% url 'delete' candidate.id %}" class="btn btn-danger"> Delete </a>
+</div>
+<hr>
+{% endfor %}
+
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+{% endblock body %}
